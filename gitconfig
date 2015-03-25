@@ -1,8 +1,8 @@
 [user]
-  name = Ben Radler
-  email = benradler@me.com
+  name =  Prateek Mehrotra
+  email = prateek.mehrotra@onelogin.com
 [github]
-  user  = lordnibbler
+  user  = prateekm21
   token = GithubToken
 [alias]
   co = checkout
