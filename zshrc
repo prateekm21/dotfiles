@@ -1,58 +1,3 @@
-###### My config below
-
-# setup the ZSH history path location
-export ZSH_HISTORY_PATH=$HOME/.zsh_history
-
-# Autoload zsh functions.
-fpath=(~/.zsh/functions $fpath)
-autoload -U ~/.zsh/functions/*(:t)
-
-for zsh_source in $HOME/.zsh/*.zsh; do
-  source $zsh_source
-done
-
-# source the .local.zsh file if it exists
-if [[ -s $HOME/.local.zsh ]] ; then source $HOME/.local.zsh ; fi
-
-# execute the .shell_profile
-. $HOME/.shell_profile
-
-# Add the Heroku Toolbelt binary
-export PATH="/usr/local/heroku/bin:$PATH"
-
-# option + arrow to move between words
-bindkey -e
-bindkey '^[[1;9C' forward-word
-bindkey '^[[1;9D' backward-word
-
-# To enable rbenv shims and autocompletion
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# rbenv-vars from stouset, eliminates need for bundle exec
-PATH=./.bundle/bin:$PATH
-
-# Add rails 4 project-specific binstubs to PATH
-PATH="./bin:$PATH"
-
-# tmuxinator
-source ~/.bin/tmuxinator.zsh
-
-# add the NPM binaries to $PATH
-PATH="$PATH:/usr/local/share/npm/bin/"
-
-# added by travis gem
-[ -f /Users/meowingtons/.travis/travis.sh ] && source /Users/meowingtons/.travis/travis.sh
-
-# NVM configuration
-export NVM_DIR="/Users/meowingtons/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# alias hub to git
-eval "$(hub alias -s)"
-
-
-###### OH MY ZSH config below
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -60,13 +5,13 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="ys-pm"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -100,14 +45,18 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
+#plugins=(git bundle brew gpg-agent)
 
 # User configuration
 
-# export PATH="./bin:./.bundle/bin:/Users/meowingtons/.rbenv/shims:/Applications/Postgres.app/Contents/Versions/9.3/bin:/usr/local/heroku/bin:/Users/meowingtons/.rbenv/shims:/Users/meowingtons/.rbenv/bin:/Users/meowingtons/bin:/Users/meowingtons/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/local/share/npm/bin"
+#export PATH=~/.rbenv/shims:/Applications/Postgres.app/Contents/Versions/9.3/bin:$HOME/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+
+if [[ -r $ZSH/lib/path.zsh ]]; then
+  source $ZSH/lib/path.zsh
+fi
+
+source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -133,3 +82,15 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+if [[ -r ~/.aliasrc ]]; then
+  source ~/.aliasrc
+fi
+
+#source NVM
+source $(brew --prefix nvm)/nvm.sh
+
+# ssh agent
+ssh-add -K
+
+# Z
+. /usr/local/etc/profile.d/z.sh
