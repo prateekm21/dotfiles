@@ -1,0 +1,80 @@
+#!/bin/bash
+# shell script to update hostname
+# version 1.0
+
+print_msg(){
+	echo -e "$1"
+}
+
+usage(){
+	echo "Usage: $0 <hostname>"
+	exit 1
+}
+
+file_exist(){
+	local file_name="$1"
+	[[ -f "$file_name" ]] && return 0 || return 1
+
+}
+
+find_and_replace(){
+	print_msg "find "$current_hostname" in file $1 and replace with $new_hostname\n"
+	sed -i "s/$current_hostname/$new_hostname/g" "$1"
+}
+
+update_hostfile(){
+	print_msg "Updating hostname to: $new_hostname\n"
+	# update hosts file
+	local filepath="/etc/hostname"
+
+	if file_exist $filepath
+	then
+        find_and_replace $filepath
+	else
+        print_msg "ERROR: file \"$filepath\" does not exist. Please check and re run script!!\n"
+	fi
+}
+
+update_pg_hba(){
+	local filepath="/etc/postgresql/9.3/main/pg_hba.conf"
+	print_msg "Updating file : $filepath\n"
+
+    if file_exist $filepath
+    then
+        find_and_replace $filepath
+    else
+        print_msg "ERROR: file \"$filepath\" does not exist. Please check and re run script!!\n"
+    fi
+}
+
+update_pg_conf(){
+	local filepath="/etc/postgresql/9.3/main/postgresql.conf"
+	print_msg "Updating file : $filepath\n"
+
+    if file_exist $filepath
+    then
+        find_and_replace $filepath
+    else
+        print_msg "ERROR: file \"$filepath\" does not exist. Please check and re run script!!\n"
+    fi
+}
+
+# script start here
+# check for user input of hostname
+[[ $# -eq 0 ]] && usage
+
+# Set hostname variable
+current_hostname=`hostname`
+new_hostname=$1
+
+# user input to confirm hotsname selection
+print_msg "Are you sure you want to set hostname to \"$1\" (y/n)? "
+read answer
+
+if echo "$answer" | grep -iq "^y" ;then
+    update_hostfile
+    update_pg_hba
+    update_pg_conf
+else
+    echo "** Exit without setting up hostname !! Development environment will not work without proper hostname **"
+fi

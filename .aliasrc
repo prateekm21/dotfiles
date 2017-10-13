@@ -1,0 +1,52 @@
+#Aliases
+alias ll='ls -lGh'
+alias ls='ls -Gh'
+alias cls='clear'
+
+#ONELOGIN
+alias src='cd ~/onelogin/src'
+alias ola='cd ~/onelogin/src/onelogin.com/'
+alias ocs='cd ~/onelogin/src/one-click-service/'
+alias esv='cd ~/onelogin/src/event-service'
+alias otp='cd /Users/prateekmehrotra/onelogin/src/onelogin-otp/iphone/phonegap/77257_OneLoginOTP'
+alias ss='script/server -u'
+alias sp='bx script/puma'
+alias sc='script/console'
+alias fish='cd ~/onelogin/src/fish/onelogin.com' 
+
+# shadow old
+alias ssh-shadow='ssh pmehrotra@app.onelogin-shadow.com'
+# shaodw 01
+alias ssh-shadow01a='ssh pmehrotra@admin01-shadow01.use1.onlgn.net'
+alias ssh-shadow01p='ssh pmehrotra@portal01-shadow01.use1.onlgn.net'
+# shadow 03
+alias ssh-shadow03a='ssh pmehrotra@admin01-shadow03.use1.onlgn.net'
+alias ssh-shadow03p='ssh pmehrotra@portal01-shadow03.use1.onlgn.net'
+# napps shadow
+alias ssh-napps='ssh pmehrotra@napps-shadow01.use1.onlgn.net'
+alias ssh-napps01='ssh pmehrotra@napps01-shadow01.use1.onlgn.net'
+alias ssh-napps03='ssh pmehrotra@napps01-shadow03.use1.onlgn.net'
+# oneclick shadow
+alias ssh-oc='ssh pmehrotra@oneclick-shadow01.use1.onlgn.net'
+
+alias ssh-stage='ssh pmehrotra@app.onelogin.us'
+alias ssh-oc='ssh pmehrotra@ec2-54-159-233-210.compute-1.amazonaws.com'
+alias pworker='bundle exec ruby workers/provisioning_worker.rb'
+alias conewui='ola && git co master_newui && ola'
+alias rmqw='TIER=development bundle exec ruby bin/event_worker &; TIER=development bundle exec ruby bin/api_worker &; tail -f log/event_worker.log'
+alias codingc='cd /Users/prateekmehrotra/Copy/study/coding_chall'
+#GIT
+alias gst='git status'
+alias gdf='git diff'
+alias gph='git push'
+alias gpl='git pull'
+alias gad='git add'
+
+#RAILS
+alias bx='bundle exec'
+alias rs='bx rails s'
+alias rc='bx rails c'
+alias rspc='COVERAGE=true LOG_LEVEL=wtf bundle exec rspec'
+
+#DEV ENV
+alias rmine='GEM_PATH="/Users/prateekmehrotra/onelogin/src/onelogin.com/vendor/bundler/gems" mine .'
