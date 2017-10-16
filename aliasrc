@@ -2,8 +2,6 @@
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
 alias pgstop="pg_ctl -D /usr/local/var/postgres stop -s -m fast"
 
-# Ruby Bundler
-alias be="bundle exec"
 
 #Aliases
 alias ll='ls -lGh'
@@ -17,28 +15,4 @@ alias la="ls -al"
 alias o=$EDITOR
 alias dotf="cd $HOME/.dotfiles"
 alias t="todo.sh"
-
-
-#ONELOGIN
-alias src='cd ~/onelogin/src'
-alias ola='cd ~/onelogin/src/onelogin.com/'
-alias ocs='cd ~/onelogin/src/one-click-service/'
-alias esv='cd ~/onelogin/src/event-service'
-alias ss='script/server -u'
-alias sp='bx script/puma'
-alias sc='script/console'
-alias fish='cd ~/onelogin/src/fish/onelogin.com'
-alias ssh-shadow='ssh pmehrotra@app.onelogin-shadow.com'
-alias ssh-stage='ssh pmehrotra@app.onelogin.us'
-alias ssh-oc='ssh pmehrotra@ec2-54-159-233-210.compute-1.amazonaws.com'
-alias pworker='bundle exec ruby workers/provisioning_worker.rb'
-alias conewui='ola && git co master_newui && ola'
-alias rmqw='TIER=development bundle exec ruby bin/event_worker &; TIER=development bundle exec ruby bin/api_worker &; tail -f log/event_worker.log'
-alias codingc='cd /Users/prateekmehrotra/Copy/study/coding_chall'
-
-#RAILS
-alias bx='bundle exec'
-alias rs='bx rails s'
-alias rc='bx rails c'
-alias rspc='COVERAGE=true LOG_LEVEL=wtf bundle exec rspec'
 
